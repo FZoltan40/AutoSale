@@ -60,6 +60,43 @@ namespace AutoSale
             conn.Connection.Close();
         }
 
+        public static void feladat3()
+        {
+            int id, ev;
+
+            Console.Write("Kérem az autó id-ját: ");
+            id = int.Parse(Console.ReadLine());
+
+            Console.Write("Kérem az autó új gyártásiidejét: ");
+            ev = int.Parse(Console.ReadLine());
+
+            string sql = $"UPDATE `cars` SET `Date`='{ev}' WHERE `Id` = {id}";
+
+            conn.Connection.Open();
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+
+            conn.Connection.Close();
+        }
+
+        public static void feladat4()
+        {
+            int id;
+
+            Console.Write("Kérem az autó id-ját: ");
+            id = int.Parse(Console.ReadLine());
+
+            string sql = $"DELETE FROM `cars` WHERE Id = {id}";
+
+            conn.Connection.Open();
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.ExecuteNonQuery();
+
+            conn.Connection.Close();
+        }
+
         static void Main(string[] args)
         {
             /*feladat1();
@@ -68,7 +105,11 @@ namespace AutoSale
                 Console.WriteLine($"Márka: {item.Brand}, Azonosító: {item.License}");
             }*/
 
-            feladat2();
+            //feladat2();
+
+            //feladat3();
+
+            feladat4();
         }
     }
 }
