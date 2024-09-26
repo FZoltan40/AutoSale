@@ -97,6 +97,34 @@ namespace AutoSale
             conn.Connection.Close();
         }
 
+
+        public static void feladat5()
+        {
+            int id;
+
+            Console.Write("Kérem az autó id-ját: ");
+            id = int.Parse(Console.ReadLine());
+
+            string sql = $"SELECT * FROM cars WHERE Id={id}";
+
+            conn.Connection.Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            dr.Read();
+
+            string record = "";
+
+            for (int i = 0; i < dr.FieldCount; i++)
+            {
+
+                record += dr[i].ToString() + ";";
+
+            }
+            Console.WriteLine(record);
+            conn.Connection.Close();
+        }
+
         static void Main(string[] args)
         {
             /*feladat1();
@@ -109,7 +137,9 @@ namespace AutoSale
 
             //feladat3();
 
-            feladat4();
+            //feladat4();
+
+            feladat5();
         }
     }
 }
